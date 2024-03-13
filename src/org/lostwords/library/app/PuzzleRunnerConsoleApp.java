@@ -18,10 +18,15 @@ public class PuzzleRunnerConsoleApp {
 
 		myPuzzle.fillPuzzle(myPuzzle.getSquare());
 
+		myPuzzle.tryToPlaceWordDiagonal(myPuzzle, "SHELDON", 99999);
+
+		myPuzzle.tryToPlaceWordRectangular(myPuzzle, "PASCIAK", 99999);
+
 		boolean hiddenResult = false;
+
 		int hiddenCount = 0;
 
-		String sentence = "NOW IS THE TIME FOR ALL GOOD MEN TO LEARN HOW TO CODE IN JAVA";
+		String sentence = "Code is like humor When you have to explain it it is bad Cory House";
 
 		String[] words = sentence.split(" ");
 		for (String word : words) {
@@ -30,6 +35,14 @@ public class PuzzleRunnerConsoleApp {
 				hiddenCount++;
 			}
 		}
+
+		System.out.println("Words hidden using stored paths algorithm: " + hiddenCount + "\n");
+
+		myPuzzle.printPuzzle();
+
+		System.out.println("\nAll words hidden: " + hiddenCount + "\n");
+
+		myPuzzle.displayAllWordPieces();
 
 //		for (int i = 0; i < 19; i++) {
 
@@ -61,8 +74,6 @@ public class PuzzleRunnerConsoleApp {
 
 		// System.out.println("Words hidden: " + hiddenCount);
 
-		myPuzzle.printPuzzle();
-
 		// app.run();
 
 		// System.out.println("-----------------------");
@@ -83,12 +94,14 @@ public class PuzzleRunnerConsoleApp {
 		int sCol = (int) Math.floor(puzzleCols / 2);
 
 		boolean wasHidden = false;
-		int maxTries = 9999;
+		int maxTries = 99999;
 		int currentTries = 0;
 		do {
 			currentTries++;
 			sRow = (int) Math.floor(puzzleRows * Math.random());
 			sCol = (int) Math.floor(puzzleCols * Math.random());
+
+			// @TODO - modify method name to improve use
 
 			wasHidden = myPuzzle.testGetAndShowWordPathsByLength(theLength, theWord, sRow, sCol);
 

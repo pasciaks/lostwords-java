@@ -69,9 +69,12 @@ public class Puzzle {
 			if (currentCount == randomPath) {
 				if (checkForWordHidePossibleInPath(sRow, sCol, word, list)) {
 					hideWordInPath(sRow, sCol, word, list);
-					for (MyRowColClass myRowCol : list) {
-						// System.out.println(myRowCol);
-					}
+					// @TODO - REMOVE this chosen word path so it is not used again
+					// @TODO - REMOVE this startRow, startCol from the list so it is not used again
+					// @TODO - MIGHT need to restructure code to allow those removes
+					// for (MyRowColClass myRowCol : list) {
+					// System.out.println(myRowCol);
+					// }
 					return true;
 				}
 			}
@@ -357,6 +360,9 @@ public class Puzzle {
 	}
 
 	private boolean hideWordInPath(int startRow, int startCol, String word, List<MyRowColClass> path) {
+
+		Map<Integer, PuzzlePiece> wordPieces = new HashMap<Integer, PuzzlePiece>();
+
 		int wordLength = word.length();
 		if (wordLength != path.size()) {
 			return false;
@@ -371,8 +377,9 @@ public class Puzzle {
 			// System.out.println("Row: " + currentRow + ", Col: " + currentCol);
 			// System.out.println(word.charAt(i));
 			matrix.set(currentRow, currentCol, new PuzzlePiece(word.charAt(i), null, currentRow, currentCol));
-
+			wordPieces.put(i, matrix.get(currentRow, currentCol));
 		}
+		storeHashMapOfWordPiecesInList(wordPieces);
 		return true;
 	}
 
@@ -569,9 +576,16 @@ public class Puzzle {
 	public void displayAllWordPieces() {
 		for (int i = 0; i < wordPiecesListForPuzzle.size(); i++) {
 			Map<Integer, PuzzlePiece> testWordPieces = wordPiecesListForPuzzle.get(i);
-			// System.out.println("WordPiecesList: " + testWordPieces);
+			System.out.println("WordPiecesList: " + testWordPieces);
+			for (int j = 0; j < testWordPieces.size(); j++) {
+				PuzzlePiece testPuzzlePiece = testWordPieces.get(j);
+				System.out.println(testPuzzlePiece.toString());
+				// System.out.println(testPuzzlePiece.getRow());
+				// System.out.println(testPuzzlePiece.getCol());
+
+			}
 		}
-		// System.out.println("Number of words: " + wordPiecesListForPuzzle.size());
+		System.out.println("Number of words: " + wordPiecesListForPuzzle.size());
 	}
 
 	public void fillPuzzleBlocks(char prev, char newLetter) {
