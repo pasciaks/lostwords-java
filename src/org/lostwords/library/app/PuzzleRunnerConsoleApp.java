@@ -12,11 +12,13 @@ public class PuzzleRunnerConsoleApp {
 
 	public static void main(String[] args) {
 
-		PuzzleRunnerConsoleApp app = new PuzzleRunnerConsoleApp();
+		// PuzzleRunnerConsoleApp app = new PuzzleRunnerConsoleApp();
 
 		Puzzle myPuzzle = new Puzzle(12, 12);
 
 		myPuzzle.fillPuzzle(myPuzzle.getSquare());
+
+		// @TODO - clean up use, why does myPuzzle have to pass itself to the method?
 
 		myPuzzle.tryToPlaceWordDiagonal(myPuzzle, "SHELDON", 99999);
 
@@ -26,8 +28,29 @@ public class PuzzleRunnerConsoleApp {
 
 		String[] words = sentence.split(" ");
 
-		for (String word : words) {
-			app.hideAWord(myPuzzle, word);
+		for (String theWord : words) {
+			// @TODO - clean up code, put all behavior in the myPuzzle object
+			// @TODO - replace unneeded app.hideAWord(myPuzzle, word);
+
+			int theLength = theWord.length();
+			int puzzleRows = myPuzzle.getRows();
+			int puzzleCols = myPuzzle.getCols();
+
+			int sRow = (int) Math.floor(puzzleRows / 2);
+			int sCol = (int) Math.floor(puzzleCols / 2);
+
+			boolean wasHidden = false;
+
+			int maxTries = 99999;
+			int currentTries = 0;
+
+			do {
+				currentTries++;
+				sRow = (int) Math.floor(puzzleRows * Math.random());
+				sCol = (int) Math.floor(puzzleCols * Math.random());
+				// @TODO - modify method naming and use
+				wasHidden = myPuzzle.testGetAndShowWordPathsByLength(theLength, theWord, sRow, sCol);
+			} while (wasHidden == false && currentTries < maxTries);
 		}
 
 		myPuzzle.printPuzzle();
@@ -80,21 +103,20 @@ public class PuzzleRunnerConsoleApp {
 		int theLength = theWord.length();
 		int puzzleRows = myPuzzle.getRows();
 		int puzzleCols = myPuzzle.getCols();
+
 		int sRow = (int) Math.floor(puzzleRows / 2);
 		int sCol = (int) Math.floor(puzzleCols / 2);
 
 		boolean wasHidden = false;
+
 		int maxTries = 99999;
 		int currentTries = 0;
+
 		do {
 			currentTries++;
 			sRow = (int) Math.floor(puzzleRows * Math.random());
 			sCol = (int) Math.floor(puzzleCols * Math.random());
-
-			// @TODO - modify method name to improve use
-
 			wasHidden = myPuzzle.testGetAndShowWordPathsByLength(theLength, theWord, sRow, sCol);
-
 		} while (wasHidden == false && currentTries < maxTries);
 		return wasHidden;
 	}

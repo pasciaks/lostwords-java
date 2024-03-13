@@ -32,6 +32,8 @@ More work to re factor, re name and document this code and it's use is still nee
 
 		myPuzzle.fillPuzzle(myPuzzle.getSquare());
 
+		// @TODO - clean up use, why does myPuzzle have to pass itself to the method?
+
 		myPuzzle.tryToPlaceWordDiagonal(myPuzzle, "SHELDON", 99999);
 
 		myPuzzle.tryToPlaceWordRectangular(myPuzzle, "PASCIAK", 99999);
@@ -39,9 +41,30 @@ More work to re factor, re name and document this code and it's use is still nee
 		String sentence = "Code is like humor when you have to explain it it is bad Cory House";
 
 		String[] words = sentence.split(" ");
-		
-		for (String word : words) {
-			app.hideAWord(myPuzzle, word);
+
+		for (String theWord : words) {
+			// @TODO - clean up code, put all behavior in the myPuzzle object
+			// @TODO - replace unneeded app.hideAWord(myPuzzle, word);
+
+			int theLength = theWord.length();
+			int puzzleRows = myPuzzle.getRows();
+			int puzzleCols = myPuzzle.getCols();
+
+			int sRow = (int) Math.floor(puzzleRows / 2);
+			int sCol = (int) Math.floor(puzzleCols / 2);
+
+			boolean wasHidden = false;
+
+			int maxTries = 99999;
+			int currentTries = 0;
+
+			do {
+				currentTries++;
+				sRow = (int) Math.floor(puzzleRows * Math.random());
+				sCol = (int) Math.floor(puzzleCols * Math.random());
+				// @TODO - modify method naming and use
+				wasHidden = myPuzzle.testGetAndShowWordPathsByLength(theLength, theWord, sRow, sCol);
+			} while (wasHidden == false && currentTries < maxTries);
 		}
 
 		myPuzzle.printPuzzle();
