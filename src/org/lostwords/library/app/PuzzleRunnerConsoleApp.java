@@ -14,45 +14,52 @@ public class PuzzleRunnerConsoleApp {
 
 		PuzzleRunnerConsoleApp app = new PuzzleRunnerConsoleApp();
 
-		Puzzle myPuzzle = new Puzzle(7, 7);
+		Puzzle myPuzzle = new Puzzle(12, 12);
 
 		myPuzzle.fillPuzzle(myPuzzle.getSquare());
 
 		boolean hiddenResult = false;
 		int hiddenCount = 0;
 
+		String sentence = "NOW IS THE TIME FOR ALL GOOD MEN TO LEARN HOW TO CODE IN JAVA";
+
+		String[] words = sentence.split(" ");
+		for (String word : words) {
+			hiddenResult = app.hideAWord(myPuzzle, word);
+			if (hiddenResult) {
+				hiddenCount++;
+			}
+		}
+
 //		for (int i = 0; i < 19; i++) {
 
-		hiddenResult = app.hideAWord(myPuzzle, "MICHAEL");
-		if (hiddenResult) {
-			hiddenCount++;
-		}
-		hiddenResult = app.hideAWord(myPuzzle, "ACE");
-		if (hiddenResult) {
-			hiddenCount++;
-		}
-		hiddenResult = app.hideAWord(myPuzzle, "SHELDON");
-		if (hiddenResult) {
-			hiddenCount++;
-		}
-		hiddenResult = app.hideAWord(myPuzzle, "MARY");
-		if (hiddenResult) {
-			hiddenCount++;
-		}
-		hiddenResult = app.hideAWord(myPuzzle, "BRYAN");
-		if (hiddenResult) {
-			hiddenCount++;
-		}
-		hiddenResult = app.hideAWord(myPuzzle, "ASHLEY");
-		if (hiddenResult) {
-			hiddenCount++;
-		}
-
-		myPuzzle.printPuzzle();
+//		hiddenResult = app.hideAWord(myPuzzle, "MICHAEL");
+//		if (hiddenResult) {
+//			hiddenCount++;
+//		}
+//		hiddenResult = app.hideAWord(myPuzzle, "ACE");
+//		if (hiddenResult) {
+//			hiddenCount++;
+//		}
+//		hiddenResult = app.hideAWord(myPuzzle, "SHELDON");
+//		if (hiddenResult) {
+//			hiddenCount++;
+//		}
+//		hiddenResult = app.hideAWord(myPuzzle, "MARY");
+//		if (hiddenResult) {
+//			hiddenCount++;
+//		}
+//		hiddenResult = app.hideAWord(myPuzzle, "BRYAN");
+//		if (hiddenResult) {
+//			hiddenCount++;
+//		}
+//		hiddenResult = app.hideAWord(myPuzzle, "ASHLEY");
+//		if (hiddenResult) {
+//			hiddenCount++;
 
 //		}
 
-		System.out.println("Words hidden: " + hiddenCount);
+		// System.out.println("Words hidden: " + hiddenCount);
 
 		myPuzzle.printPuzzle();
 

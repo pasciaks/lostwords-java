@@ -70,7 +70,7 @@ public class Puzzle {
 				if (checkForWordHidePossibleInPath(sRow, sCol, word, list)) {
 					hideWordInPath(sRow, sCol, word, list);
 					for (MyRowColClass myRowCol : list) {
-						System.out.println(myRowCol);
+						// System.out.println(myRowCol);
 					}
 					return true;
 				}
@@ -368,8 +368,8 @@ public class Puzzle {
 		for (int i = 0; i < wordLength; i++) {
 			currentRow += path.get(i).row; // 1st coordinate offsets are 0,0
 			currentCol += path.get(i).col;
-			System.out.println("Row: " + currentRow + ", Col: " + currentCol);
-			System.out.println(word.charAt(i));
+			// System.out.println("Row: " + currentRow + ", Col: " + currentCol);
+			// System.out.println(word.charAt(i));
 			matrix.set(currentRow, currentCol, new PuzzlePiece(word.charAt(i), null, currentRow, currentCol));
 
 		}
