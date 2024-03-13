@@ -22,25 +22,15 @@ public class PuzzleRunnerConsoleApp {
 
 		myPuzzle.tryToPlaceWordRectangular(myPuzzle, "PASCIAK", 99999);
 
-		boolean hiddenResult = false;
-
-		int hiddenCount = 0;
-
-		String sentence = "Code is like humor When you have to explain it it is bad Cory House";
+		String sentence = "Code is like humor when you have to explain it it is bad Cory House";
 
 		String[] words = sentence.split(" ");
+
 		for (String word : words) {
-			hiddenResult = app.hideAWord(myPuzzle, word);
-			if (hiddenResult) {
-				hiddenCount++;
-			}
+			app.hideAWord(myPuzzle, word);
 		}
 
-		System.out.println("Words hidden using stored paths algorithm: " + hiddenCount + "\n");
-
 		myPuzzle.printPuzzle();
-
-		System.out.println("\nAll words hidden: " + hiddenCount + "\n");
 
 		myPuzzle.displayAllWordPieces();
 
