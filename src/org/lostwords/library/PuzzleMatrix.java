@@ -10,7 +10,7 @@ class PuzzleMatrix {
 		matrix = new HashMap<>();
 	}
 
-	public PuzzlePiece set(int row, int col, PuzzlePiece piece) {
+	protected PuzzlePiece set(int row, int col, PuzzlePiece piece) {
 		try {
 			if (!matrix.containsKey(row)) {
 				matrix.put(row, new HashMap<>());
@@ -22,7 +22,7 @@ class PuzzleMatrix {
 		}
 	}
 
-	public PuzzlePiece get(int row, int col) {
+	protected PuzzlePiece get(int row, int col) {
 		try {
 			if (matrix.containsKey(row) && matrix.get(row).containsKey(col)) {
 				return matrix.get(row).get(col);

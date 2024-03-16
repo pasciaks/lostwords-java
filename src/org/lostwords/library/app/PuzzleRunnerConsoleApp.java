@@ -5,14 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.lostwords.library.FileHandling;
 import org.lostwords.library.Puzzle;
 
 public class PuzzleRunnerConsoleApp {
 
 	public static void main(String[] args) {
 
-		// PuzzleRunnerConsoleApp app = new PuzzleRunnerConsoleApp();
+		PuzzleRunnerConsoleApp app = new PuzzleRunnerConsoleApp();
 
 		Puzzle myPuzzle = new Puzzle(12, 12);
 
@@ -87,7 +86,7 @@ public class PuzzleRunnerConsoleApp {
 
 		// System.out.println("Words hidden: " + hiddenCount);
 
-		// app.run();
+		app.run();
 
 		// System.out.println("-----------------------");
 
@@ -192,7 +191,12 @@ public class PuzzleRunnerConsoleApp {
 
 		List<String> wordList = new ArrayList<>();
 
-		wordList = FileHandling.readFileIntoListOfStrings("/usr/share/dict/words");
+		wordList.add("MICHAEL");
+		wordList.add("ACE");
+		wordList.add("SHELDON");
+		wordList.add("MARY");
+		wordList.add("BRYAN");
+		wordList.add("ASHLEY");
 
 		if (wordList == null || wordList.size() == 0 || wordList.isEmpty()) {
 			System.out.println("Word list is null, 0, or empty! Exiting.");

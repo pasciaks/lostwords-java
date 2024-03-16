@@ -24,6 +24,8 @@ public class Puzzle {
 
 	private int index = 0;
 
+	private PuzzleMatrix matrix = new PuzzleMatrix();
+
 	final class MyRowColClass {
 		private int row;
 		private int col;
@@ -43,8 +45,6 @@ public class Puzzle {
 	public List<Map<Integer, PuzzlePiece>> wordPiecesListForPuzzle = new ArrayList<>();
 
 	public Map<Integer, List<List<MyRowColClass>>> wordPathsByLength = new HashMap<>();
-
-	PuzzleMatrix matrix = new PuzzleMatrix();
 
 	public Puzzle(int rows, int cols) {
 		this.rows = rows;

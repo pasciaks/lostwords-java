@@ -4,10 +4,13 @@ import java.awt.Color;
 
 public class PuzzlePiece {
 
-	char letter;
-	int row;
-	int col;
-	Color color;
+	protected char letter;
+
+	protected int row;
+
+	protected int col;
+
+	protected Color color;
 
 	public PuzzlePiece(char letter, Color color, int row, int col) {
 
@@ -21,13 +24,13 @@ public class PuzzlePiece {
 		this.col = col;
 	}
 
-	public Color setColor(int r, int g, int b, int a) {
+	protected Color setColor(int r, int g, int b, int a) {
 		Color previousColor = this.color;
 		color = new Color(r, g, b, a);
 		return previousColor;
 	}
 
-	public char setLetter(char letter) {
+	protected char setLetter(char letter) {
 		char previousLetter = this.letter;
 		this.letter = letter;
 		return previousLetter;
